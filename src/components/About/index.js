@@ -24,7 +24,9 @@ const About = () => {
                         before transferring to UC Berkeley to study Data Science. Through my studies I have developed great respect and appreciation for academia and 
                         feel in touch with my university. This is why being a researcher and contributing to a peer-reviewed journal is in my bucket list. In the meantime,
                         I am striving to find a meaningful internship in which I am able to grow as a Data Scientist, and to build proficiency in the field of Machine Learning.
-                        I am infatuated by the probabalistic approach taken to build a nueral network
+                        My passion for Machine Learning stems from my feelings of amazement towards how AI and nueral networks deal with problems. I appreciate
+                        the raw probabilistic approach that models take and the sheer amount of calculations needed to train models. Understanding the reasoning and logic behind AI 
+                        has given me some existentialist feelings, which is why I am so drawn to this field. 
                         At the moment I am interested in internships and research opportunities related to Data Engineering/Science or Machine Learning.
 
                     </p>

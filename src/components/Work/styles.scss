@@ -43,6 +43,7 @@ $breakpoints: (
   }
 
   &__buttons {
+    display:flex;
     margin: 20px 0;
   }
 
@@ -51,8 +52,9 @@ $breakpoints: (
       overflow: scroll;
       margin-top: 40px;
       max-width: 80%;
+      min-height: 75% !important;
+      min-width: 50% !important;
       overflow-x: hidden;
-      min-width: unset;
       @include mqMax('tablet') {
         max-width: 90%;
         

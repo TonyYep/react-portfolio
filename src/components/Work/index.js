@@ -24,7 +24,7 @@ export const Work = () => {
     setPageNumber((prevPageNumber) => prevPageNumber + offset)
   }
 
-  console.log(pageNumber)
+  
 
   const previousPage = () => {
     changePage(-1)
@@ -44,7 +44,7 @@ export const Work = () => {
         >
 
           <Page pageNumber={pageNumber} size="A4" 
-            scale={1}
+            scale={1.4}
             renderTextLayer={false}
             renderAnnotationLayer={false}
           >
