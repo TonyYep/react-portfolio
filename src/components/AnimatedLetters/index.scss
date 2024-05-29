@@ -8,8 +8,8 @@
 
 
 
-@for $i from 0 through 100 {
+@for $i from 0 through 200 {
     .text-animate._#{$i} {
-        animation-delay: #{$i * 0.05}s;
+        animation-delay: #{$i * 0.05 + 2}s;
     }
 }

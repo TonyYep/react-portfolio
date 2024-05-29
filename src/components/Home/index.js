@@ -11,8 +11,8 @@ const Home = () => {
 
     const [letterClass, setLetterClass] = useState('text-animate')
     const nameArray = ["ony Chan,"]
-    const jobArray = ["Model Enthusiast, "]
-    const temp = ["and Data Science student at Cal"]
+    const jobArray = ["Model Enthusiast,"]
+    const temp = [" and     Data Science student at Cal"]
     const jobArray2 = ["an Aspiring Machine Learning Researcher,"]
     const intro1 = ["Hi, "]
     const intro2 = ["I'm"]

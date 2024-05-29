@@ -6,6 +6,8 @@ import { faDatabase, faTerminal } from "@fortawesome/free-solid-svg-icons";
 import { faAngular, faFigma, faReact, faHtml5, faPython } from "@fortawesome/free-brands-svg-icons";
 import Loader from 'react-loaders'
 import UCBLogo from "../../assets/images/UCBLogo.png"
+import PyTorch from "../../assets/images/PyTorch.png"
+import R_logo from "../../assets/images/R_logo.png"
 
 const About = () => {
     const idx = useRef(0);
@@ -20,21 +22,24 @@ const About = () => {
                         <AnimatedLetters letterClass="text-animate" strArray={["About me"]} id={idx} startColor="white" endColor="#ffd700"/>
                     </h1>
                     <p>
-                        Hello, my name is Tony Chan. I am a student who has studied Financial Mathematics and Statistics at UC Santa Barbara for two years, 
-                        before transferring to UC Berkeley to study Data Science. Through my studies I have developed great respect and appreciation for academia and 
-                        feel in touch with my university. This is why being a researcher and contributing to a peer-reviewed journal is in my bucket list. In the meantime,
-                        I am striving to find a meaningful internship in which I am able to grow as a Data Scientist, and to build proficiency in the field of Machine Learning.
-                        My passion for Machine Learning stems from my feelings of amazement towards how AI and nueral networks deal with problems. I appreciate
-                        the raw probabilistic approach that models take and the sheer amount of calculations needed to train models. Understanding the reasoning and logic behind AI 
-                        has given me some existentialist feelings, which is why I am so drawn to this field. 
-                        At the moment I am interested in internships and research opportunities related to Data Engineering/Science or Machine Learning.
+                        I am Tony, a current Data Science student at UC Berkeley, formerly studying Financial Mathematics and Statistics at UC
+                        Santa Barbara. Through my academic journey I have developed great respect and appreciation for academia and hope to be
+                        able to make contributions to papers and academic journals in the future.
+
+                        I am currently striving to be a mindful, context-driven data scientist. My passion fo rmachine learning and its
+                        applications. I am fascinated by the raw probabilistic approach that models take and the sheer amount of calculations 
+                        needed to deploy models. At the moment, I am searching for the right opportunity for me to properly utilize my skills
+                        within a driven environment valuing the context of data, the process of learning, and pushing the boundaries of machine
+                        learning applications.
+
+                       
 
                     </p>
                     <p style={{whiteSpace: 'pre-wrap'}}>
-                        Skills:    Python    |    PyTorch    |    R    |    SQL    |    Latex    |    Regression Analysis
+                        Skills:    Python    |    PyTorch    |    R    |    SQL    |    Latex
                     </p>
                     <p style={{whiteSpace: 'pre-wrap'}}>
-                        Interests/Hobbies:   Machine Learning   |   Peer-Reviewed Journals   |   Badminton  |   Dragon Boat
+                        Interests/Hobbies:   Machine Learning   |   Peer-Reviewed Journals   |   Badminton  |   Dragon Boat   |   Lion Dance
                     </p>
                 </div>
 
@@ -52,7 +57,7 @@ const About = () => {
                             <img src={UCBLogo} alt="UCB Logo" style={{width: "20rem"}}/>
                         </div>
                         <div className="face3">
-                            <FontAwesomeIcon className="adjust" icon={faReact} color="#28A4D9"/>
+                            <img src={PyTorch} alt="UCB Logo" style={{width: "20rem"}}/>
                         </div>
                         <div className="face4">
                             <FontAwesomeIcon className="adjust" icon={faDatabase} color="#5ED4F4"/>
@@ -61,7 +66,7 @@ const About = () => {
                             <FontAwesomeIcon className="adjust" icon={faTerminal} color="#EFD81D"/>
                         </div>
                         <div className="face6">
-                            <FontAwesomeIcon className="adjust" icon={faHtml5} color="#EC4"/>
+                            <img src={R_logo} alt="UCB Logo" style={{width: "20rem"}}/>
                         </div>
                     </div>
                 </div>
