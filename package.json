@@ -1,56 +1,29 @@
 {
-  "homepage": "https://tonyyep.github.io/react-portfolio",
-  "name": "react-portfolio",
-  "version": "0.1.0",
-  "private": false,
-  "dependencies": {
-    "@emailjs/browser": "^3.10.0",
-    "@fortawesome/free-brands-svg-icons": "^6.2.1",
-    "@fortawesome/free-solid-svg-icons": "^6.2.1",
-    "@fortawesome/react-fontawesome": "^0.2.0",
-    "@react-pdf/renderer": "^3.1.12",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "animate.css": "^4.1.1",
-    "loaders.css": "^0.1.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-leaflet": "^4.2.0",
-    "react-loaders": "^3.0.1",
-    "react-pdf": "^7.1.2",
-    "react-router-dom": "^6.6.2",
-    "react-scripts": "5.0.1",
-    "sass": "^1.57.1",
-    "web-vitals": "^2.1.4"
-  },
+  "name": "tony-chan-portfolio",
+  "version": "2.0.0",
+  "private": true,
   "scripts": {
-    "start": "react-scripts start",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "dependencies": {
+    "next": "15.1.0",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "motion": "11.15.0",
+    "lucide-react": "^0.469.0",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^2.6.0"
   },
   "devDependencies": {
-    "gh-pages": "^5.0.0"
+    "typescript": "^5.7.2",
+    "@types/node": "^22.10.2",
+    "@types/react": "^19.0.2",
+    "@types/react-dom": "^19.0.2",
+    "tailwindcss": "^4.0.0",
+    "@tailwindcss/postcss": "^4.0.0",
+    "postcss": "^8.4.49"
   }
 }

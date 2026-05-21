@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+/* Fonts loaded via next/font/local in app/layout.tsx.
+   Exposed as --font-coolvetica and --font-la-belle-aurore on <html>. */
+
+@theme {
+  --color-ink: #0a0a0a;
+  --color-ink-2: #111113;
+  --color-ink-3: #161617;
+  --color-ink-4: #1f1f22;
+
+  --color-bone: #f5f0e8;
+  --color-mist: rgba(255, 255, 255, 0.55);
+  --color-haze: rgba(255, 255, 255, 0.4);
+  --color-quiet: rgba(255, 255, 255, 0.08);
+
+  --color-brand: #ffd700;
+  --color-brand-soft: rgba(255, 215, 0, 0.55);
+  --color-brand-ghost: rgba(255, 215, 0, 0.08);
+
+  --color-success: #4ade80;
+  --color-warn: #fbbf24;
+  --color-danger: #ef4444;
+
+  --font-display: var(--font-coolvetica), "Helvetica Neue", system-ui, sans-serif;
+  --font-cursive: var(--font-la-belle-aurore), "Brush Script MT", cursive;
+  --font-mono: ui-monospace, "JetBrains Mono", "SF Mono", Menlo, monospace;
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --radius-card: 14px;
+  --radius-card-lg: 18px;
+
+  --shadow-glow: 0 0 0 1px rgba(255, 215, 0, 0.15);
+}
+
+html {
+  background: var(--color-ink);
+  color: var(--color-bone);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv11";
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-brand);
+  color: var(--color-ink);
+}
+
+/* Subtle film-grain feel — adds atmosphere without imagery */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(
+      circle at 20% 0%,
+      rgba(255, 215, 0, 0.04) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 100%,
+      rgba(255, 215, 0, 0.02) 0%,
+      transparent 50%
+    );
+  z-index: 0;
+}
+
+/* Custom scrollbar that fits the brand */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-ink);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 215, 0, 0.15);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 215, 0, 0.3);
+}
+
+/* Reusable utility classes for legacy decorations */
+.html-tag {
+  font-family: var(--font-cursive);
+  color: var(--color-brand-soft);
+  font-size: 1rem;
+  display: block;
+}
+
+.flat-button {
+  color: var(--color-brand);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-decoration: none;
+  padding: 12px 22px;
+  border: 1px solid var(--color-brand);
+  border-radius: 8px;
+  display: inline-block;
+  transition: background-color 0.4s ease, color 0.4s ease, transform 0.2s ease;
+  text-transform: uppercase;
+}
+.flat-button:hover {
+  background-color: var(--color-brand);
+  color: var(--color-ink);
+  transform: translateY(-1px);
+}
+
+/* Page entrance — used at the route level */
+@keyframes pageIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.page-in {
+  animation: pageIn 0.6s ease-out;
+}

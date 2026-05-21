@@ -1,70 +1,137 @@
-# Getting Started with Create React App
+# Tony Chan — Portfolio (v2)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Personal portfolio site rebuilt on a modern stack.
 
-## Available Scripts
+## Stack
 
-In the project directory, you can run:
+- **Next.js 15** (App Router, React 19, Turbopack)
+- **TypeScript**
+- **Tailwind CSS v4** (CSS-first config)
+- **Motion** (formerly Framer Motion) — animations
+- **lucide-react** — icons
 
-### `npm start`
+## Design system
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Dark + gold (`#ffd700`) on near-black. Three custom fonts:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Coolvetica** — display headings (legacy, distinctive)
+- **La Belle Aurore** — cursive HTML-tag accents (legacy)
+- **system-ui** — body text
 
-### `npm test`
+The `<body>` and `<h1>` cursive HTML-tag decorations from the original site are preserved as a brand signature.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Legacy elements kept
 
-### `npm run build`
+- Letter-by-letter bounce-in entrance (now powered by Motion springs instead of a custom rAF loop)
+- 3D spinning skills cube (now interactive: click a face to pin, hover to slow rotation, skill detail panel)
+- Cursive `<h1>` / `</h1>` / `<body>` / `</body>` HTML-tag accents
+- Slim left sidebar with icon nav and social links
+- Gold-on-dark color theme
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Architecture
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+app/
+├── layout.tsx           # Root layout, fonts, sidebar, metadata
+├── page.tsx             # Home — hero + bento grid
+├── about/page.tsx       # Bio, education, skills
+├── work/page.tsx        # Experience timeline
+├── projects/page.tsx    # Project gallery — full content per card, external links
+├── contact/page.tsx     # Form + direct contact
+├── not-found.tsx        # Styled 404
+└── globals.css          # Tailwind v4 theme + base styles
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+components/
+├── Sidebar.tsx          # Persistent left nav
+├── PageFrame.tsx        # Per-route wrapper + body tags
+├── AnimatedLetters.tsx  # Motion-driven letter bounce
+├── HtmlTag.tsx          # Cursive <h1> / </h1> decoration
+├── SkillCube.tsx        # Interactive 3D cube (click-to-pin)
+└── BentoCard.tsx        # Bento card primitive + BentoLabel
 
-### `npm run eject`
+lib/
+├── content.ts           # Resume content — single source of truth
+└── cn.ts                # className merger utility
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Setup
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+npm install
+npm run dev
+# open http://localhost:3000
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Build
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+npm run build
+npm run start
+```
 
-## Learn More
+## Deploy (Vercel — recommended)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+# install once
+npm i -g vercel
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# from project root
+vercel
+```
 
-### Code Splitting
+The site has no backend dependencies, so it deploys as a fully static + SSR'd Next.js app on Vercel's free tier with zero configuration. Custom domain (`tonyyep.dev` or similar) can be added in the Vercel dashboard.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Alternative: GitHub Pages
 
-### Analyzing the Bundle Size
+GitHub Pages requires static export. To deploy there instead of Vercel:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+1. Add to `next.config.ts`: `output: "export"`
+2. `npm run build` produces `out/`
+3. Push `out/` to a `gh-pages` branch (or use `gh-pages` npm package)
 
-### Making a Progressive Web App
+Note: dynamic features (route handlers, server actions) won't work on static export. The contact form needs an external service (EmailJS, Resend, etc.) regardless of host.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Content updates
 
-### Advanced Configuration
+**All content lives in `lib/content.ts`**. Update there, not in JSX.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+When the resume changes:
+1. Edit `lib/content.ts`
+2. `npm run dev` to verify
+3. Commit, push, Vercel auto-deploys
 
-### Deployment
+## Contact form
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+The form in `app/contact/page.tsx` uses a server action stub. Wire it up to your provider of choice:
 
-### `npm run build` fails to minify
+- **EmailJS** — same as the legacy site; works from client. Store IDs in `.env.local` with `NEXT_PUBLIC_` prefix (they're public anyway) but **never `console.log` them** as the legacy site did.
+- **Resend** — recommended. Server-side, generous free tier. Store `RESEND_API_KEY` server-side only.
+- **Next.js route handler** — `app/api/contact/route.ts` is the modern pattern.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Adding a new project
+
+Add an entry to `lib/content.ts` under `projects`. The card renders automatically. Fields:
+
+```ts
+{
+  slug: "kebab-case-id",        // used for anchor links: /projects#kebab-case-id
+  title: "Project name",
+  subtitle: "Short tagline",
+  award: "Award name" | null,   // shows award badge if present
+  stack: ["Tech", "Tech"],
+  summary: "Paragraph description.",
+  metric: { value: "42", label: "things done" },
+  links: [                       // any number of external artifact links
+    { label: "View paper", url: "https://..." },
+    { label: "View slides", url: "https://..." },
+  ],
+}
+```
+
+That's it — no per-project page to create, no viz component to build. As you accumulate artifacts (PDFs, GitHub repos, blog posts), just point the `link` field at them.
+
+## What's next
+
+- Optional: per-project deeper pages can be added back later if you want to write up case studies
+- Custom favicon and OG image
+- Contact form wired to a real provider (EmailJS / Resend / Next.js route handler)
